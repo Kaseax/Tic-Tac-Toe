@@ -7,11 +7,12 @@
 
 import SwiftUI
 
-let columns: [GridItem] = [GridItem(.flexible()),
-                           GridItem(.flexible()),
-                           GridItem(.flexible())]
-
 struct ContentView: View {
+    
+    let columns: [GridItem] = [GridItem(.flexible()),
+                               GridItem(.flexible()),
+                               GridItem(.flexible())]
+    
     var body: some View {
         GeometryReader { geometry in
             VStack {
