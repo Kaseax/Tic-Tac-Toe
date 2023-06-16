@@ -29,13 +29,14 @@ struct ContentView: View {
                                 .frame(width: geometry.size.width/3 - 15,
                                        height: geometry.size.width/3 - 15)
                             
-                            Image(systemName: "xmark")
+                            Image(systemName: moves[i]?.indicator ?? "")
                                 .resizable()
                                 .frame(width: 40, height: 40)
                             //TODO: Optionally change color
                                 .foregroundColor(.white)
                         }
                         .onTapGesture {
+                            if isOccupied(in: moves, forIndex: i) { return }
                             moves[i] = Move(player: isHumansTurn ? .human : .computer, boardIndex: i)
                             isHumansTurn.toggle()
                         }
@@ -45,6 +46,10 @@ struct ContentView: View {
             }
             .padding()
         }
+    }
+    
+    func isOccupied(in moves: [Move?], forIndex index: Int) -> Bool {
+        return moves.contains(where: { $0?.boardIndex == index })
     }
 }
 
