@@ -110,6 +110,17 @@ struct ContentView: View {
         }
         
         // If AI cant win - block
+        let humanMoves = moves.compactMap { $0 }.filter { $0.player == .human }
+        let humanPositions = Set(humanMoves.map { $0.boardIndex })
+        
+        for pattern in winPatterns {
+            let winPositions = pattern.subtracting(humanPositions)
+            
+            if winPositions.count == 1 {
+                let isAvailable = !isOccupied(in: moves, forIndex: winPositions.first!)
+                if isAvailable { return winPositions.first! }
+            }
+        }
         
         // If AI cant block - take middle
         
