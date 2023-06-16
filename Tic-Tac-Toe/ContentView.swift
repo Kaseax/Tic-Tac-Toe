@@ -13,6 +13,8 @@ struct ContentView: View {
                                GridItem(.flexible()),
                                GridItem(.flexible())]
     
+    @State private var moves: [Move?] = Array(repeating: nil, count: 9)
+    
     var body: some View {
         GeometryReader { geometry in
             VStack {
