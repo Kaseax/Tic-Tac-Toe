@@ -14,6 +14,7 @@ struct ContentView: View {
                                GridItem(.flexible())]
     
     @State private var moves: [Move?] = Array(repeating: nil, count: 9)
+    @State private var isHumanTurn = true
     
     var body: some View {
         GeometryReader { geometry in
