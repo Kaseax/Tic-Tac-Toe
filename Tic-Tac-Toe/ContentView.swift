@@ -40,10 +40,14 @@ struct ContentView: View {
                             moves[i] = Move(player: .human, boardIndex: i)
                             isGameboardDisabled = true
                             
-                            //TODO: Check for win condition or draw
+                            //Check for win condition or draw
                             if checkWinCondition(for: .human, in: moves) {
                                 //TODO: Add Alerts
                                 print("Human wins")
+                            }
+                            
+                            if checkForDraw(in: moves) {
+                                print("Draw!")
                             }
                          
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -54,6 +58,10 @@ struct ContentView: View {
                                 if checkWinCondition(for: .computer, in: moves) {
                                     //TODO: Add Alerts
                                     print("Computer wins")
+                                }
+                                
+                                if checkForDraw(in: moves) {
+                                    print("Draw!")
                                 }
                             }
                         }
@@ -97,6 +105,10 @@ struct ContentView: View {
         for pattern in winPatterns where pattern.isSubset(of: playerPositions) { return true }
         
         return false
+    }
+    
+    func checkForDraw(in moves: [Move?]) -> Bool {
+        return moves.compactMap() { $0 }.count == 9
     }
 }
 
