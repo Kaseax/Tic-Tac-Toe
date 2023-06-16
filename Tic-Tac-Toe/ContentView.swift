@@ -39,7 +39,6 @@ struct ContentView: View {
                         .onTapGesture {
                             if isOccupied(in: moves, forIndex: i) { return }
                             moves[i] = Move(player: .human, boardIndex: i)
-                            isGameboardDisabled = true
                             
                             //Check for win condition or draw
                             if checkWinCondition(for: .human, in: moves) {
@@ -51,6 +50,8 @@ struct ContentView: View {
                                 alertItem = AlertContext.draw
                                 return
                             }
+                            
+                            isGameboardDisabled = true
                          
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                 let computerPosition = determineComputerMovePosition(in: moves)
