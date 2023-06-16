@@ -14,7 +14,7 @@ struct ContentView: View {
                                GridItem(.flexible())]
     
     @State private var moves: [Move?] = Array(repeating: nil, count: 9)
-    @State private var isHumanTurn = true
+    @State private var isHumansTurn = true
     
     var body: some View {
         GeometryReader { geometry in
@@ -34,6 +34,10 @@ struct ContentView: View {
                                 .frame(width: 40, height: 40)
                             //TODO: Optionally change color
                                 .foregroundColor(.white)
+                        }
+                        .onTapGesture {
+                            moves[i] = Move(player: isHumansTurn ? .human : .computer, boardIndex: i)
+                            isHumansTurn.toggle()
                         }
                     }
                 }
