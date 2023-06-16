@@ -20,9 +20,16 @@ struct ContentView: View {
                     ForEach(0..<9) { i in
                         ZStack {
                             Circle()
+                            //TODO: Optionally Change color
                                 .foregroundColor(.blue).opacity(0.5)
                                 .frame(width: geometry.size.width/3 - 15,
                                        height: geometry.size.width/3 - 15)
+                            
+                            Image(systemName: "xmark")
+                                .resizable()
+                                .frame(width: 40, height: 40)
+                            //TODO: Optionally change color
+                                .foregroundColor(.white)
                         }
                     }
                 }
